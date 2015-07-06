@@ -1,0 +1,7 @@
+---
+- name: download apache test war
+  get_url:
+    url=$war_url
+    dest=/var/lib/tomcat6/webapps/
+    mode=0440
+  notify: restart tomcat

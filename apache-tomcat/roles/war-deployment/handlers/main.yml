@@ -1,0 +1,11 @@
+---
+- name: restart apache
+service:
+name=apache2
+state=restarted
+
+- name: restart tomcat
+service:
+name=tomcat6
+state=restarted
+notify: restart apache
