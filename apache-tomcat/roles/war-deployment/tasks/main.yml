@@ -10,6 +10,7 @@
   notify: restart tomcat
 
 - name:  redirect apache to tomcat (jkMount)
+  copy:
     src=tomcat.conf
     dest=/etc/apache2/sites-available/
     owner=root
