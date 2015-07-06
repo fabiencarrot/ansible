@@ -1,7 +1,17 @@
 ---
+- name: disable default apache website
+  shell: /usr/sbin/a2dissite 000-default
+
 - name: download apache test war
   get_url:
     url="{{ war_url }}"
     dest=/var/lib/tomcat6/webapps/
     mode=0440
   notify: restart tomcat
+
+- name:  redirect apache to tomcat (jkMount)
+    src=tomcat.conf
+    dest=/etc/apache2/sites-available/
+    owner=root
+    group=root
+  notify: enable tomcat

@@ -1,4 +1,8 @@
 ---
+- name: enable tomcat
+  shell: /usr/sbin/a2ensite tomcat
+  notify: restart apache
+
 - name: restart apache
   service:
     name=apache2
