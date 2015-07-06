@@ -7,6 +7,16 @@
     url="{{ war_url }}"
     dest=/var/lib/tomcat6/webapps/
     mode=0440
+
+- name: backup original server.xml
+  shell: mv /etc/tomcat6/server.xml /etc/tomcat6/server.xml.ori
+
+- name: depot server.xml pour gestion connecteur AJP13
+  copy:
+    src=server.xml
+    dest=/etc/tomcat6/
+    owner=root
+    group=root
   notify: restart tomcat
 
 - name:  redirect apache to tomcat (jkMount)
